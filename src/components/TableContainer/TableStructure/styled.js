@@ -9,8 +9,6 @@ export const useTableStyles = makeStyles(() => ({
     height: "100%",
     width: "100%",
   },
-  list: {},
-  thead: {},
   tbody: {
     width: "100%",
   },
@@ -23,7 +21,6 @@ export const useTableStyles = makeStyles(() => ({
     minWidth: "100%",
     width: "100%",
   },
-  headerRow: {},
   cell: {
     display: "block",
     flexGrow: 0,
@@ -32,5 +29,4 @@ export const useTableStyles = makeStyles(() => ({
   expandingCell: {
     flex: 1,
   },
-  column: {},
 }))

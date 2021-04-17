@@ -10,9 +10,10 @@ import { useDispatch } from "react-redux"
 
 export const Row = memo(({ index, style, data: { data } }) => {
   const dispatch = useDispatch()
+  const classes = useStyles()
   const actions = bindActionCreators(tableSlice.actions, dispatch)
   return (
-    <TableRow component="div" style={style}>
+    <TableRow component="div" style={style} className={classes.root}>
       {columns.map((el, ind) => (
         <TableCell
           key={el.label + ind}
