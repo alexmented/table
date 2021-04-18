@@ -13,7 +13,7 @@ const TableContainer = () => {
   const classes = useStyles()
 
   useEffect(async () => {
-    await fetch("jj.json")
+    await fetch("bigdata.json")
       .then((res) => res.json())
       .then((result) => changingElements(result))
   }, [])
