@@ -18,7 +18,7 @@ const TableContainer = () => {
   const actions = bindActionCreators(tableSlice.actions, dispatch)
 
   useEffect(async () => {
-    await fetch("j.json")
+    await fetch("jj.json")
       .then((res) => res.json())
       .then((result) => actions.changingData(result))
   }, [])
