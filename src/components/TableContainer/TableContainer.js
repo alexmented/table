@@ -30,7 +30,7 @@ const TableContainer = () => {
       .then((result) => {
         changingElementsSuccess(result);
       })
-      .catch((e) => changingElementsFailure("Ошибка, попробуйте позже"));
+      .catch(() => changingElementsFailure("Ошибка, попробуйте позже"));
   }, []);
 
   const onSortClick = (index, isSorted) => {
