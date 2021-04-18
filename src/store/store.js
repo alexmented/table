@@ -1,6 +1,6 @@
 import { createStore } from "redux"
-import { tableSlice } from "../components/TableContainer/tableSlice"
+import tableSlice from "../components/TableContainer/tableSlice"
 
-const store = createStore(tableSlice.reducer)
+const store = createStore(tableSlice)
 
 export default store

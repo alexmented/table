@@ -2,44 +2,34 @@ import React, { useState } from "react"
 import Input from "@material-ui/core/Input"
 import Button from "@material-ui/core/Button"
 import { useStyles } from "./styled"
-import { createSelector } from "reselect"
-import { useSelector } from "react-redux"
+import { useSearchData } from "../../features/useSearchData"
 
 export const SearchPanel = ({ setIsFiltered }) => {
   const [searchValue, setSearchValue] = useState("")
+  const [isError, setIsError] = useState(false)
   const classes = useStyles()
-  const tableData = useSelector((state) => state)
-  const elementsSearch = createSelector(
-    (state) => state,
-    (elements) =>
-      elements.filter(
-        (el) =>
-          Object.values(el).filter((v) => v.toString().includes(searchValue)).length
-      )
+  const { tableData, tableDataRegSearch, tableDataElementsSearch } = useSearchData(
+    searchValue
   )
-
-  const tableDataElementsSearch = useSelector(elementsSearch)
-
-  const reSearch = createSelector(
-    (state) => state,
-    (elements) => {
-      const re = new RegExp(searchValue)
-      return elements.filter(
-        (el) => Object.values(el).filter((v) => re.test(v.toString())).length
-      )
-    }
-  )
-
-  const tableDataRegSearch = useSelector(reSearch)
 
   const onSearchClick = () => {
     setSearchValue("")
-    setIsFiltered(tableDataElementsSearch)
+    if (tableDataElementsSearch.length) {
+      setIsError(false)
+      setIsFiltered(tableDataElementsSearch)
+    } else {
+      setIsError(true)
+    }
   }
 
   const onSearchRegClick = () => {
     setSearchValue("")
-    setIsFiltered(tableDataRegSearch)
+    if (tableDataRegSearch.length) {
+      setIsError(false)
+      setIsFiltered(tableDataRegSearch)
+    } else {
+      setIsError(true)
+    }
   }
 
   return (
@@ -59,6 +49,7 @@ export const SearchPanel = ({ setIsFiltered }) => {
       <Button onClick={() => setIsFiltered(tableData)} className={classes.button}>
         Показать все
       </Button>
+      <p>{isError ? "Ничего не найдено" : ""}</p>
     </>
   )
 }

@@ -2,25 +2,21 @@ import React, { useEffect, useState } from "react"
 import { columns } from "./constants"
 import Container from "@material-ui/core/Container"
 import Paper from "@material-ui/core/Paper"
-import { useDispatch, useSelector } from "react-redux"
 import { TableStructure } from "./TableStructure/TableStructure"
-import { tableSlice } from "./tableSlice"
 import { useStyles } from "./styled"
-import { bindActionCreators } from "redux"
 import { SearchPanel } from "./SearchPanel/SearchPanel"
 import { AdditionPanel } from "./AdditionPanel/AdditionPanel"
+import { useData } from "../features/useData"
 
 const TableContainer = () => {
-  const tableData = useSelector((state) => state)
+  const { tableData, changingElements } = useData()
   const classes = useStyles()
   const [isFiltered, setIsFiltered] = useState([])
-  const dispatch = useDispatch()
-  const actions = bindActionCreators(tableSlice.actions, dispatch)
 
   useEffect(async () => {
     await fetch("jj.json")
       .then((res) => res.json())
-      .then((result) => actions.changingData(result))
+      .then((result) => changingElements(result))
   }, [])
 
   const onSortClick = (index, isSorted) => {
@@ -32,7 +28,7 @@ const TableContainer = () => {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container fixed className={classes.container}>
         <Paper className={classes.paper}>
           <TableStructure
             data={isFiltered.length ? isFiltered : tableData}

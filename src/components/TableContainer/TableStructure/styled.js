@@ -7,7 +7,7 @@ export const useTableStyles = makeStyles(() => ({
   },
   table: {
     height: "100%",
-    width: "100%",
+    minWidth: 900,
   },
   tbody: {
     width: "100%",

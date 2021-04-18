@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = []
 
-export const tableSlice = createSlice({
+const tableSlice = createSlice({
   name: "table",
   initialState,
   reducers: {
@@ -11,3 +11,7 @@ export const tableSlice = createSlice({
     deleteData: (state, action) => state.filter((el) => el.id !== action.payload),
   },
 })
+
+const { actions, reducer } = tableSlice
+export const { changingData, addData, deleteData } = actions
+export default reducer

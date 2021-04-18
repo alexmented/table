@@ -11,7 +11,7 @@ import { useTableStyles } from "./styled"
 
 export const TableStructure = ({ data, columns, onSortClick }) => {
   const classes = useTableStyles()
-  const itemKey = (index, data) => data.data[index].name
+  const itemKey = (index, { data }) => data[index].name
   return (
     <div className={classes.root}>
       <Table className={classes.table} component="div">
@@ -25,10 +25,10 @@ export const TableStructure = ({ data, columns, onSortClick }) => {
 
         <TableBody component="div" className={classes.tbody}>
           <AutoSizer>
-            {({ height, width }) => (
+            {({ height }) => (
               <List
                 height={height}
-                width={width}
+                width={912}
                 itemCount={data.length}
                 itemSize={ROW_SIZE}
                 itemKey={itemKey}

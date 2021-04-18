@@ -10,5 +10,12 @@ export const useStyles = makeStyles(() => ({
   },
   cell: {
     height: ROW_SIZE,
+    minWidth: 150,
+    wordBreak: "break-word",
+  },
+  button: {
+    textTransform: "lowercase",
+    background: "aqua",
+    height: 20,
   },
 }))

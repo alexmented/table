@@ -5,8 +5,8 @@ export const useStyles = makeStyles(() => ({
     display: "flex",
   },
   container: {
-    flexGrow: 1,
     height: 500,
+    minWidth: 950,
   },
   paper: {
     height: "100%",

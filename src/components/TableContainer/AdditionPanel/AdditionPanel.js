@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
 import Button from "@material-ui/core/Button"
 import Input from "@material-ui/core/Input"
-import { bindActionCreators } from "redux"
-import { tableSlice } from "../tableSlice"
 import { useStyles } from "./styled"
+import { useData } from "../../features/useData"
 
 const initAddValue = {
   name: "",
@@ -16,14 +14,12 @@ const initAddValue = {
 
 export const AdditionPanel = () => {
   const [addValue, setAddValue] = useState(initAddValue)
-  const dispatch = useDispatch()
   const classes = useStyles()
-  const actions = bindActionCreators(tableSlice.actions, dispatch)
-  const tableData = useSelector((state) => state)
+  const { addNewElement, tableData } = useData(addValue)
 
   const onAddClick = () => {
     const newId = tableData[tableData.length - 1].id + 1
-    const newVal = {
+    const newValue = {
       id: newId,
       name: addValue.name,
       surname: addValue.surname,
@@ -32,7 +28,7 @@ export const AdditionPanel = () => {
       something: addValue.something,
     }
     setAddValue(initAddValue)
-    actions.addData(newVal)
+    addNewElement(newValue)
   }
 
   return (

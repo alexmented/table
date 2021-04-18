@@ -4,14 +4,12 @@ import TableCell from "@material-ui/core/TableCell"
 import React, { memo } from "react"
 import { areEqual } from "react-window"
 import { useStyles } from "./styled"
-import { tableSlice } from "../tableSlice"
-import { bindActionCreators } from "redux"
-import { useDispatch } from "react-redux"
+import Button from "@material-ui/core/Button"
+import { useData } from "../../features/useData"
 
 export const Row = memo(({ index, style, data: { data } }) => {
-  const dispatch = useDispatch()
   const classes = useStyles()
-  const actions = bindActionCreators(tableSlice.actions, dispatch)
+  const { deleteElement } = useData()
   return (
     <TableRow component="div" style={style} className={classes.root}>
       {columns.map((el, ind) => (
@@ -25,7 +23,12 @@ export const Row = memo(({ index, style, data: { data } }) => {
         </TableCell>
       ))}
       <TableCell component="div" variant="body" className={classes.cell}>
-        <button onClick={() => actions.deleteData(data[index].id)}>Удалить</button>
+        <Button
+          className={classes.button}
+          onClick={() => deleteElement(data[index].id)}
+        >
+          Удалить
+        </Button>
       </TableCell>
     </TableRow>
   )
