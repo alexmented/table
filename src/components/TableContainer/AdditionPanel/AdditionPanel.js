@@ -14,6 +14,7 @@ const initAddValue = {
 
 export const AdditionPanel = () => {
   const [addValue, setAddValue] = useState(initAddValue);
+  const [message, setMessage] = useState("");
   const classes = useStyles();
   const { addNewElement, tableData } = useData(addValue);
 
@@ -27,8 +28,14 @@ export const AdditionPanel = () => {
       time: addValue.time,
       something: addValue.something,
     };
-    setAddValue(initAddValue);
-    addNewElement(newValue);
+    const values = Object.values(newValue);
+    const isValuesEqual = values.filter((el) => el).length === values.length;
+    if (isValuesEqual) {
+      setAddValue(initAddValue);
+      setMessage("Добавлено");
+      addNewElement(newValue);
+    }
+    setMessage("Заполните все поля");
   };
 
   return (
@@ -48,6 +55,7 @@ export const AdditionPanel = () => {
       <Button color="primary" onClick={onAddClick} className={classes.button}>
         Добавить
       </Button>
+      <p>{message}</p>
     </div>
   );
 };
