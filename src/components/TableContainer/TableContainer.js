@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { columns } from "./constants";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -9,21 +9,28 @@ import { AdditionPanel } from "./AdditionPanel/AdditionPanel";
 import { useData } from "../features/useData";
 
 const TableContainer = () => {
-  const { tableData, changingElements, sortedData, sortingElements } = useData();
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    tableData,
+    changingElementsSuccess,
+    loadingData,
+    errorData,
+    sortedData,
+    sortingElements,
+    changingElementsFetch,
+    changingElementsFailure,
+  } = useData();
   const classes = useStyles();
 
   useEffect(async () => {
     await fetch("bigdata.json")
       .then((res) => {
-        setIsLoading(true);
+        changingElementsFetch();
         return res.json();
       })
       .then((result) => {
-        setIsLoading(false);
-        changingElements(result);
+        changingElementsSuccess(result);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => changingElementsFailure(e));
   }, []);
 
   const onSortClick = (index, isSorted) => {
@@ -35,21 +42,25 @@ const TableContainer = () => {
 
   return (
     <div className={classes.root}>
-      <Container fixed maxWidth={"sm"} className={classes.container}>
-        <Paper className={classes.paper}>
-          {isLoading ? (
-            <div>Loading</div>
-          ) : (
-            <TableStructure
-              data={sortedData.length ? sortedData : tableData}
-              onSortClick={onSortClick}
-              columns={columns}
-            />
-          )}
-        </Paper>
-        <AdditionPanel />
-        <SearchPanel />
-      </Container>
+      {errorData ? (
+        errorData
+      ) : (
+        <Container fixed maxWidth={"sm"} className={classes.container}>
+          <Paper className={classes.paper}>
+            {loadingData ? (
+              <div>Loading</div>
+            ) : (
+              <TableStructure
+                data={sortedData.length ? sortedData : tableData}
+                onSortClick={onSortClick}
+                columns={columns}
+              />
+            )}
+          </Paper>
+          <AdditionPanel />
+          <SearchPanel />
+        </Container>
+      )}
     </div>
   );
 };
