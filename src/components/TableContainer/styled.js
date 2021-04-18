@@ -14,4 +14,7 @@ export const useStyles = makeStyles(() => ({
     flexDirection: "column",
     marginBottom: "20px",
   },
+  error: {
+    color: "red",
+  },
 }));

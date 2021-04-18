@@ -30,7 +30,7 @@ const TableContainer = () => {
       .then((result) => {
         changingElementsSuccess(result);
       })
-      .catch((e) => changingElementsFailure(e));
+      .catch((e) => changingElementsFailure("Ошибка, попробуйте позже"));
   }, []);
 
   const onSortClick = (index, isSorted) => {
@@ -42,25 +42,27 @@ const TableContainer = () => {
 
   return (
     <div className={classes.root}>
-      {errorData ? (
-        errorData
-      ) : (
-        <Container fixed maxWidth={"sm"} className={classes.container}>
-          <Paper className={classes.paper}>
-            {loadingData ? (
-              <div>Loading</div>
-            ) : (
-              <TableStructure
-                data={sortedData.length ? sortedData : tableData}
-                onSortClick={onSortClick}
-                columns={columns}
-              />
-            )}
-          </Paper>
-          <AdditionPanel />
-          <SearchPanel />
-        </Container>
-      )}
+      <Container fixed maxWidth={"sm"} className={classes.container}>
+        {errorData ? (
+          <div className={classes.error}>{errorData}</div>
+        ) : (
+          <>
+            <Paper className={classes.paper}>
+              {loadingData ? (
+                <div>Loading</div>
+              ) : (
+                <TableStructure
+                  data={sortedData.length ? sortedData : tableData}
+                  onSortClick={onSortClick}
+                  columns={columns}
+                />
+              )}
+            </Paper>
+            <AdditionPanel />
+            <SearchPanel />
+          </>
+        )}
+      </Container>
     </div>
   );
 };
