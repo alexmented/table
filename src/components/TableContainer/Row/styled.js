@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/styles"
+import { ROW_SIZE } from "../constants"
 
 export const useStyles = makeStyles(() => ({
   root: {
@@ -6,5 +7,8 @@ export const useStyles = makeStyles(() => ({
       color: "magenta",
       cursor: "pointer",
     },
+  },
+  cell: {
+    height: ROW_SIZE,
   },
 }))

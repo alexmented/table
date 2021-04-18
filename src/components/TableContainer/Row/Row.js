@@ -1,5 +1,5 @@
 import TableRow from "@material-ui/core/TableRow"
-import { columns, ROW_SIZE } from "../constants"
+import { columns } from "../constants"
 import TableCell from "@material-ui/core/TableCell"
 import React, { memo } from "react"
 import { areEqual } from "react-window"
@@ -19,20 +19,12 @@ export const Row = memo(({ index, style, data: { data } }) => {
           key={el.label + ind}
           component="div"
           variant="body"
-          style={{
-            height: ROW_SIZE,
-          }}
+          className={classes.cell}
         >
           {data[index][el.dataKey]}
         </TableCell>
       ))}
-      <TableCell
-        component="div"
-        variant="body"
-        style={{
-          height: ROW_SIZE,
-        }}
-      >
+      <TableCell component="div" variant="body" className={classes.cell}>
         <button onClick={() => actions.deleteData(data[index].id)}>Удалить</button>
       </TableCell>
     </TableRow>
