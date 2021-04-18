@@ -3,10 +3,12 @@ import Input from "@material-ui/core/Input"
 import Button from "@material-ui/core/Button"
 import { useStyles } from "./styled"
 import { useSearchData } from "../../features/useSearchData"
+import { useData } from "../../features/useData"
 
-export const SearchPanel = ({ setIsFiltered }) => {
+export const SearchPanel = () => {
   const [searchValue, setSearchValue] = useState("")
   const [isError, setIsError] = useState(false)
+  const { sortingElements } = useData()
   const classes = useStyles()
   const { tableData, tableDataRegSearch, tableDataElementsSearch } = useSearchData(
     searchValue
@@ -16,7 +18,7 @@ export const SearchPanel = ({ setIsFiltered }) => {
     setSearchValue("")
     if (tableDataElementsSearch.length) {
       setIsError(false)
-      setIsFiltered(tableDataElementsSearch)
+      sortingElements(tableDataElementsSearch)
     } else {
       setIsError(true)
     }
@@ -26,7 +28,7 @@ export const SearchPanel = ({ setIsFiltered }) => {
     setSearchValue("")
     if (tableDataRegSearch.length) {
       setIsError(false)
-      setIsFiltered(tableDataRegSearch)
+      sortingElements(tableDataRegSearch)
     } else {
       setIsError(true)
     }
@@ -34,6 +36,7 @@ export const SearchPanel = ({ setIsFiltered }) => {
 
   return (
     <>
+      <h4>Поиск строк по вхождению подстроки</h4>
       <Input
         placeholder="Поиск"
         type="text"
@@ -46,7 +49,7 @@ export const SearchPanel = ({ setIsFiltered }) => {
       <Button onClick={onSearchRegClick} className={classes.button}>
         Поиск по регулярному
       </Button>
-      <Button onClick={() => setIsFiltered(tableData)} className={classes.button}>
+      <Button onClick={() => sortingElements(tableData)} className={classes.button}>
         Показать все
       </Button>
       <p>{isError ? "Ничего не найдено" : ""}</p>

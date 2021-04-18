@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { columns } from "./constants"
 import Container from "@material-ui/core/Container"
 import Paper from "@material-ui/core/Paper"
@@ -9,9 +9,8 @@ import { AdditionPanel } from "./AdditionPanel/AdditionPanel"
 import { useData } from "../features/useData"
 
 const TableContainer = () => {
-  const { tableData, changingElements } = useData()
+  const { tableData, changingElements, sortedData, sortingElements } = useData()
   const classes = useStyles()
-  const [isFiltered, setIsFiltered] = useState([])
 
   useEffect(async () => {
     await fetch("jj.json")
@@ -20,10 +19,10 @@ const TableContainer = () => {
   }, [])
 
   const onSortClick = (index, isSorted) => {
-    const mas = isFiltered.length ? isFiltered : [...tableData]
+    const mas = sortedData.length ? [...sortedData] : [...tableData]
     !isSorted
-      ? setIsFiltered(mas.sort((a, b) => a[index] > b[index]))
-      : setIsFiltered([])
+      ? sortingElements(mas.sort((a, b) => a[index] > b[index]))
+      : sortingElements([])
   }
 
   return (
@@ -31,13 +30,13 @@ const TableContainer = () => {
       <Container fixed className={classes.container}>
         <Paper className={classes.paper}>
           <TableStructure
-            data={isFiltered.length ? isFiltered : tableData}
+            data={sortedData.length ? sortedData : tableData}
             onSortClick={onSortClick}
             columns={columns}
           />
         </Paper>
         <AdditionPanel />
-        <SearchPanel setIsFiltered={setIsFiltered} />
+        <SearchPanel />
       </Container>
     </div>
   )

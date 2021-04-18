@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux"
 import { createSelector } from "reselect"
 
-export const useSearchData = ({ searchValue }) => {
-  const tableData = useSelector((state) => state)
+export const useSearchData = (searchValue) => {
+  const tableData = useSelector((state) => state).regularData
   const elementsSearch = createSelector(
-    (state) => state,
+    (state) => state.regularData,
     (elements) =>
       elements.filter(
         (el) =>
@@ -15,7 +15,7 @@ export const useSearchData = ({ searchValue }) => {
   const tableDataElementsSearch = useSelector(elementsSearch)
 
   const reSearch = createSelector(
-    (state) => state,
+    (state) => state.regularData,
     (elements) => {
       const re = new RegExp(searchValue)
       return elements.filter(
