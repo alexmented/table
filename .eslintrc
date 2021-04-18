@@ -14,7 +14,8 @@
     "no-console": "warn",
     "no-unused-vars": "warn",
     "react/prop-types": 0,
-    "react/display-name": 0
+    "react/display-name": 0,
+    "semi": "warn"
   },
   "parser": "babel-eslint"
 }

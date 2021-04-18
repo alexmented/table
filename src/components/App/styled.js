@@ -1,4 +1,4 @@
-import makeStyles from "@material-ui/styles/makeStyles"
+import makeStyles from "@material-ui/styles/makeStyles";
 
 export const useStyles = makeStyles({
   app: {
@@ -9,4 +9,4 @@ export const useStyles = makeStyles({
     position: "absolute !important",
     borderLeft: "1px solid black",
   },
-})
+});

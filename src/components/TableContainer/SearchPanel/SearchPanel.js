@@ -1,38 +1,38 @@
-import React, { useState } from "react"
-import Input from "@material-ui/core/Input"
-import Button from "@material-ui/core/Button"
-import { useStyles } from "./styled"
-import { useSearchData } from "../../features/useSearchData"
-import { useData } from "../../features/useData"
+import React, { useState } from "react";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import { useStyles } from "./styled";
+import { useSearchData } from "../../features/useSearchData";
+import { useData } from "../../features/useData";
 
 export const SearchPanel = () => {
-  const [searchValue, setSearchValue] = useState("")
-  const [isError, setIsError] = useState(false)
-  const { sortingElements } = useData()
-  const classes = useStyles()
+  const [searchValue, setSearchValue] = useState("");
+  const [isError, setIsError] = useState(false);
+  const { sortingElements } = useData();
+  const classes = useStyles();
   const { tableData, tableDataRegSearch, tableDataElementsSearch } = useSearchData(
     searchValue
-  )
+  );
 
   const onSearchClick = () => {
-    setSearchValue("")
+    setSearchValue("");
     if (tableDataElementsSearch.length) {
-      setIsError(false)
-      sortingElements(tableDataElementsSearch)
+      setIsError(false);
+      sortingElements(tableDataElementsSearch);
     } else {
-      setIsError(true)
+      setIsError(true);
     }
-  }
+  };
 
   const onSearchRegClick = () => {
-    setSearchValue("")
+    setSearchValue("");
     if (tableDataRegSearch.length) {
-      setIsError(false)
-      sortingElements(tableDataRegSearch)
+      setIsError(false);
+      sortingElements(tableDataRegSearch);
     } else {
-      setIsError(true)
+      setIsError(true);
     }
-  }
+  };
 
   return (
     <>
@@ -54,5 +54,5 @@ export const SearchPanel = () => {
       </Button>
       <p>{isError ? "Ничего не найдено" : ""}</p>
     </>
-  )
-}
+  );
+};

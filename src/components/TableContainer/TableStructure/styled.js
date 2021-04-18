@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/styles";
 
 export const useTableStyles = makeStyles(() => ({
   root: {
@@ -29,4 +29,4 @@ export const useTableStyles = makeStyles(() => ({
   expandingCell: {
     flex: 1,
   },
-}))
+}));

@@ -19,6 +19,6 @@ export const columns = [
     label: "Something",
     dataKey: "something",
   },
-]
+];
 
-export const ROW_SIZE = 48
+export const ROW_SIZE = 48;

@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = [];
 
 const tableSlice = createSlice({
   name: "table",
@@ -10,8 +10,8 @@ const tableSlice = createSlice({
     addData: (state, action) => [...state, action.payload],
     deleteData: (state, action) => state.filter((el) => el.id !== action.payload),
   },
-})
+});
 
-const { actions, reducer } = tableSlice
-export const { changingData, addData, deleteData } = actions
-export default reducer
+const { actions, reducer } = tableSlice;
+export const { changingData, addData, deleteData } = actions;
+export default reducer;

@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/styles"
-import { ROW_SIZE } from "../constants"
+import { makeStyles } from "@material-ui/styles";
+import { ROW_SIZE } from "../constants";
 
 export const useStyles = makeStyles(() => ({
   root: {
@@ -18,4 +18,4 @@ export const useStyles = makeStyles(() => ({
     background: "aqua",
     height: 20,
   },
-}))
+}));

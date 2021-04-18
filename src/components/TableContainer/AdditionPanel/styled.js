@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from "@material-ui/styles";
 
 export const useStyles = makeStyles(() => ({
   root: {
@@ -15,4 +15,4 @@ export const useStyles = makeStyles(() => ({
     color: "black",
     marginTop: "10px",
   },
-}))
+}));

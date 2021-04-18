@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/styles"
-import { ROW_SIZE } from "../constants"
+import { makeStyles } from "@material-ui/styles";
+import { ROW_SIZE } from "../constants";
 
 export const useStyles = makeStyles(() => ({
   cell: {
@@ -10,4 +10,4 @@ export const useStyles = makeStyles(() => ({
       cursor: "pointer",
     },
   },
-}))
+}));

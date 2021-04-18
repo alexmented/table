@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = [];
 
 const sortSlice = createSlice({
   name: "sort",
@@ -8,8 +8,8 @@ const sortSlice = createSlice({
   reducers: {
     sortData: (state, action) => action.payload,
   },
-})
+});
 
-const { actions, reducer } = sortSlice
-export const { sortData } = actions
-export default reducer
+const { actions, reducer } = sortSlice;
+export const { sortData } = actions;
+export default reducer;

@@ -1,33 +1,33 @@
-import React, { useEffect } from "react"
-import { columns } from "./constants"
-import Container from "@material-ui/core/Container"
-import Paper from "@material-ui/core/Paper"
-import { TableStructure } from "./TableStructure/TableStructure"
-import { useStyles } from "./styled"
-import { SearchPanel } from "./SearchPanel/SearchPanel"
-import { AdditionPanel } from "./AdditionPanel/AdditionPanel"
-import { useData } from "../features/useData"
+import React, { useEffect } from "react";
+import { columns } from "./constants";
+import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
+import { TableStructure } from "./TableStructure/TableStructure";
+import { useStyles } from "./styled";
+import { SearchPanel } from "./SearchPanel/SearchPanel";
+import { AdditionPanel } from "./AdditionPanel/AdditionPanel";
+import { useData } from "../features/useData";
 
 const TableContainer = () => {
-  const { tableData, changingElements, sortedData, sortingElements } = useData()
-  const classes = useStyles()
+  const { tableData, changingElements, sortedData, sortingElements } = useData();
+  const classes = useStyles();
 
   useEffect(async () => {
     await fetch("bigdata.json")
       .then((res) => res.json())
-      .then((result) => changingElements(result))
-  }, [])
+      .then((result) => changingElements(result));
+  }, []);
 
   const onSortClick = (index, isSorted) => {
-    const mas = sortedData.length ? [...sortedData] : [...tableData]
+    const mas = sortedData.length ? [...sortedData] : [...tableData];
     !isSorted
       ? sortingElements(mas.sort((a, b) => a[index] > b[index]))
-      : sortingElements([])
-  }
+      : sortingElements([]);
+  };
 
   return (
     <div className={classes.root}>
-      <Container fixed className={classes.container}>
+      <Container fixed maxWidth={"sm"} className={classes.container}>
         <Paper className={classes.paper}>
           <TableStructure
             data={sortedData.length ? sortedData : tableData}
@@ -39,7 +39,7 @@ const TableContainer = () => {
         <SearchPanel />
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default TableContainer
+export default TableContainer;
