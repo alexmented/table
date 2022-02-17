@@ -22,7 +22,12 @@ const TableContainer = () => {
   const classes = useStyles();
 
   useEffect(async () => {
-    await fetch("bigdata.json")
+    await fetch("bigdata.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((res) => {
         changingElementsFetch();
         return res.json();
